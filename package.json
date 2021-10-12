@@ -1,0 +1,26 @@
+{
+  "name": "api_tests_chaijs",
+  "version": "1.0.0",
+  "description": "API-tests with chaiJs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnikoBorosova/API_tests_ChaiJs.git"
+  },
+  "author": "AnikoBorosova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnikoBorosova/API_tests_ChaiJs/issues"
+  },
+  "homepage": "https://github.com/AnikoBorosova/API_tests_ChaiJs#readme",
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "chai": "4.3.4",
+    "chai-http": "4.3.0",
+    "cors": "2.8.5",
+    "express": "4.17.1"
+  }
+}
