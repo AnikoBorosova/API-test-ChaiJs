@@ -2,11 +2,8 @@ const chai = require("chai");
 const expect = chai.expect;
 
 //const assert = chai.assert;
-
 // assert ---> test("") suite
 // expect ---> it("") describe
-
-//const server = require('../server');
 
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
@@ -41,26 +38,4 @@ describe("API-tests", () => {
 				done();
 			});
 	});
-
-
-	/*
-	suite('Basic Assertions', function () {
-		// #1
-		test('Send {surname: "Colombo"}', function (done) {
-			chai
-				.request(server)
-				.put('/travellers')
-				.send({
-					"surname": "Colombo"
-				})
-				.end(function (err, res) {
-					assert.equal(res.status, 200);
-					assert.equal(res.type, "application/json");
-					assert.equal(res.body.name, "Cristoforo");
-					assert.equal(res.body.surname, "Colombo");
-					done();
-				});
-		});
-	});
-	*/
 });
