@@ -11,12 +11,12 @@ chai.use(chaiHttp);
 
 describe("API-tests", () => {
 
-	it("Check", (done) => {
+	it("Healthcheck", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request("http://localhost:3001/ping")
 			.get("/")
 			.end((err, res) => {
-				expect(res).to.have.status(200);
+				expect(res).to.have.status(201);
 				done();
 			});
 	});
