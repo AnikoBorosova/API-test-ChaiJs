@@ -1,25 +1,10 @@
 const chai = require("chai");
 const expect = chai.expect;
 
-//const assert = chai.assert;
-// assert ---> test("") suite
-// expect ---> it("") describe
-
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
-
-describe("API-tests", () => {
-
-	it("Healthcheck", (done) => {
-		chai
-			.request("http://localhost:3001/ping")
-			.get("/")
-			.end((err, res) => {
-				expect(res).to.have.status(201);
-				done();
-			});
-	});
+describe("authTests", () => {
 
 	let authToken;
 
