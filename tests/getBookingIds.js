@@ -50,4 +50,10 @@ describe("BookingIds", () => {
 	});
 
 
+	// invalid parameters
+	// – filter: ensure the response is filtered on the specified value.
+	// filter - try with exact ID
+	//  For GET requests, verify there is NO STATE CHANGE in the system (idempotence) - ezt hogyan??
+	// Malformed content in request - malformed filter input
+
 });
