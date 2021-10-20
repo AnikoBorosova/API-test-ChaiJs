@@ -156,7 +156,7 @@ describe("BookingIds", () => {
 			});
 	});
 
-	it("bookingIds - negative - filter by bookingId - ensure it does NOT filter", (done) => {
+	it("bookingIds - negative - filter by bookingId - ensure it does NOT filter (on this endpoint)", (done) => {
 		chai
 			.request("http://localhost:3001")
 			.get("/booking?bookingid=1")
