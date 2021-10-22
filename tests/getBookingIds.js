@@ -29,6 +29,7 @@ describe("BookingIds", () => {
 		chai
 			.request("http://localhost:3001")
 			.get("/booking?firstname=sally&lastname=brown")
+			// set application json as header - accept
 			.end((err, res) => {
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
@@ -36,8 +37,8 @@ describe("BookingIds", () => {
 				expect(res.body).to.be.an("array");
 				//expect(res.body).to.be.an("array").to.have.lengthOf(1);
 				//expect(res.body[0]).to.be.an("object");
-				//expect(res.body[0]).to.have.property("firstname").that.equals("sally");
-				//expect(res.body[0]).to.have.property("lastname").that.equals("brown");
+				//expect(res.body[0]).to.have.property("firstname").that.equals("Jim");
+				//expect(res.body[0]).to.have.property("lastname").that.equals("Smith");
 				done();
 			});
 	});
@@ -136,7 +137,7 @@ describe("BookingIds", () => {
 				expect(res).to.have.status(500);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
-				expect(res.error.text).to.equal("Internal Server Error");
+				expect(res).to.have.property("error").to.have.property("text").to.equal("Internal Server Error");
 				expect(res.body).to.be.an("object").that.is.empty;
 				done();
 			});

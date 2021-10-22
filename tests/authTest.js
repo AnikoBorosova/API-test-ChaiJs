@@ -53,7 +53,7 @@ describe("authTests", () => {
 			});
 	});
 
-	it("Auth - negative - valid", (done) => {
+	it("Auth - negative - well-formed but non-existent credentials", (done) => {
 		chai
 			.request("http://localhost:3001")
 			.post("/auth")

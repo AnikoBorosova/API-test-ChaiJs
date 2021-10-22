@@ -8,8 +8,8 @@ describe("Basic healthCheck", () => {
 
 	it("Healthcheck", (done) => {
 		chai
-			.request("http://localhost:3001/ping")
-			.get("/")
+			.request("http://localhost:3001")
+			.get("/ping")
 			.end((err, res) => {
 				expect(res).to.have.status(201);
 				done();
