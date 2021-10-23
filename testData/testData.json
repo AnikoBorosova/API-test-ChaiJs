@@ -1,4 +1,12 @@
 {
+	"authValid": {
+		"username": "admin",
+		"password": "password123"
+	},
+	"authInvalid": {
+		"username": "wrongUser",
+		"password": "wrongPassword"
+	},
 	"newBooking": {
 		"firstname": "Kisa",
 		"lastname": "Vuka",
@@ -42,5 +50,38 @@
 		"checkin": "2021-06-04",
 		"checkout": "2021-02-21",
 		"additionalneeds": "Tás"
+	},
+	"updateBooking": {
+		"firstname": "dddd",
+		"lastname": "cccc",
+		"totalprice": 555,
+		"depositpaid": false,
+		"bookingdates": {
+			"checkin": "2021-03-24",
+			"checkout": "2021-03-28"
+		},
+		"additionalneeds": "Lunch"
+	},
+	"updateBooking2": {
+		"firstname": "ffff",
+		"lastname": "eee",
+		"totalprice": 777,
+		"depositpaid": true,
+		"bookingdates": {
+			"checkin": "2021-08-24",
+			"checkout": "2021-08-28"
+		},
+		"additionalneeds": "Dinner"
+	},
+	"updateBooking3": {
+		"firstname": "zzz",
+		"lastname": "bbbb",
+		"totalprice": 888,
+		"depositpaid": false,
+		"bookingdates": {
+			"checkin": "2021-07-24",
+			"checkout": "2021-07-28"
+		},
+		"additionalneeds": "Dessert"
 	}
 }

@@ -81,6 +81,8 @@ describe("Create new booking", () => {
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
 				expect(res.body).to.be.an("object").that.is.empty;
+				expect(res.text).to.have.string("xml");
+				expect(res.text).to.have.string("bookingid");
 				expect(res.text).to.have.string("firstname");
 				expect(res.text).to.have.string("lastname");
 				expect(res.text).to.have.string("totalprice");
