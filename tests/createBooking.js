@@ -29,6 +29,7 @@ describe("Create new booking", () => {
 				"additionalneeds": newBooking.additionalneeds
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -51,6 +52,7 @@ describe("Create new booking", () => {
 			.get(`/booking?firstname=${newBooking.firstname}&lastname=${newBooking.lastname}`)
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -78,6 +80,7 @@ describe("Create new booking", () => {
 				"additionalneeds": newBooking.additionalneeds
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -103,6 +106,7 @@ describe("Create new booking", () => {
 			.set("Accept", "text/plain")
 			.send({})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(500);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -131,6 +135,7 @@ describe("Create new booking", () => {
 			.end((err, res) => {
 				const dateToday = new Date().toISOString().split("T")[0];	// when no date specified, the system automatically assigns current date
 
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -164,6 +169,7 @@ describe("Create new booking", () => {
 				"additionalneeds": newBookingLong.additionalneeds
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -196,6 +202,7 @@ describe("Create new booking", () => {
 				}
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -226,6 +233,7 @@ describe("Create new booking", () => {
 				}
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(500);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -251,6 +259,7 @@ describe("Create new booking", () => {
 				}
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -281,6 +290,7 @@ describe("Create new booking", () => {
 				}
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -311,6 +321,7 @@ describe("Create new booking", () => {
 				}
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -327,6 +338,7 @@ describe("Create new booking", () => {
 			.set("Accept", "text/plain")
 			.send(newBookingMalformedSchema)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(500);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");

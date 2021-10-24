@@ -18,6 +18,7 @@ describe("Delete booking", () => {
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(201);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -33,6 +34,7 @@ describe("Delete booking", () => {
 			.get("/booking/3")
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -50,6 +52,7 @@ describe("Delete booking", () => {
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -68,6 +71,7 @@ describe("Delete booking", () => {
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(405);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -86,6 +90,7 @@ describe("Delete booking", () => {
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -103,6 +108,7 @@ describe("Delete booking", () => {
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(403);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");

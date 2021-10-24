@@ -15,6 +15,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -33,6 +34,7 @@ describe("BookingIds", () => {
 			.get("/booking?firstname=sally&lastname=brown")
 			// set application json as header - accept
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -50,6 +52,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?checkin=2014-03-13&checkout=2014-05-21")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -64,6 +67,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?checkin=2023-03-13&checkout=2023-05-21")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -77,6 +81,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?firstname=John&lastname=NonExistent")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -91,6 +96,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?firstname=000&lastname=[]]")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -105,6 +111,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?firstname=sally")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -122,6 +129,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?checkin=2021-10-20&checkout=2021-10-22")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -136,6 +144,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?checkin=201-33-67&checkout=202-348")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(500);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -150,6 +159,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?checkin=2021-10-20")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -164,6 +174,7 @@ describe("BookingIds", () => {
 			.request(urlLocal)
 			.get("/booking?bookingid=1")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -172,6 +183,4 @@ describe("BookingIds", () => {
 				done();
 			});
 	});
-
-	// TO DO - For GET requests, verify there is NO STATE CHANGE in the system (idempotence) (?)
 });

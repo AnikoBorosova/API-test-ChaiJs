@@ -14,6 +14,7 @@ describe("BookingId", () => {
 			.get("/booking/6")
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -39,6 +40,7 @@ describe("BookingId", () => {
 			.get("/booking/9")
 			.set("Accept", "application/xml")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -61,6 +63,7 @@ describe("BookingId", () => {
 			.get("/booking/3")
 			.set("Accept", "text/plain")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -76,6 +79,7 @@ describe("BookingId", () => {
 			.get("/booking/XYZ")
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -91,6 +95,7 @@ describe("BookingId", () => {
 			.get("/booking/0")
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -106,6 +111,7 @@ describe("BookingId", () => {
 			.get(`/booking/123456789`)
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");

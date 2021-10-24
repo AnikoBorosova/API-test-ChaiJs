@@ -25,6 +25,7 @@ describe("Update booking", () => {
 			.auth(authValid.username, authValid.password)
 			.send(updateBooking)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -49,6 +50,7 @@ describe("Update booking", () => {
 			.get("/booking/15")
 			.set("Accept", "application/json")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -87,6 +89,7 @@ describe("Update booking", () => {
 					<additionalneeds>${updateBooking2.additionalneeds}</additionalneeds> \
 		 		 </booking>`)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -113,6 +116,7 @@ describe("Update booking", () => {
 			.auth(authValid.username, authValid.password)
 			.send(updateBooking3)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(405);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -132,6 +136,7 @@ describe("Update booking", () => {
 			.auth(authValid.username, authValid.password)
 			.send({})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(400);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -151,6 +156,7 @@ describe("Update booking", () => {
 			.auth(authValid.username, authValid.password)
 			.send(newBookingIllegalValues)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(500);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -170,6 +176,7 @@ describe("Update booking", () => {
 			.auth(authValid.username, authValid.password)
 			.send(newBookingMalformedSchema)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(400);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -189,6 +196,7 @@ describe("Update booking", () => {
 			.auth(authInvalid.username, authInvalid.password)
 			.send(updateBooking3)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(403);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -207,6 +215,7 @@ describe("Update booking", () => {
 			.set("Accept", "application/json")
 			.send(updateBooking3)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(403);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");

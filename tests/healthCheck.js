@@ -13,6 +13,7 @@ describe("Basic healthCheck", () => {
 			.request(urlLocal)
 			.get("/ping")
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(201);
 				done();
 			});

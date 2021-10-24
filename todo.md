@@ -1,0 +1,3 @@
+- performance sanity test
+- URLencoded usage at createBooking, updateBooking, partialUpdateBooking
+- For GET requests, verify there is NO STATE CHANGE in the system (idempotence)

@@ -19,6 +19,7 @@ describe("authTests", () => {
 				"password": "password123"
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -41,6 +42,7 @@ describe("authTests", () => {
 			})
 			.then((res) => {
 				console.log("AAAAAAAAAAaaaaaa ", res)
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -64,6 +66,7 @@ describe("authTests", () => {
 				"password": "nonExistentPassword"
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -81,6 +84,7 @@ describe("authTests", () => {
 				"username": "admin"
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -101,6 +105,7 @@ describe("authTests", () => {
 				}
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");

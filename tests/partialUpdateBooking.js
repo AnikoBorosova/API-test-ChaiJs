@@ -27,6 +27,7 @@ describe("Partial update booking", () => {
 				"lastname": updateBooking.lastname
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -50,6 +51,7 @@ describe("Partial update booking", () => {
 					<depositpaid>${updateBooking2.depositpaid}</depositpaid> \
 		 		 </booking>`)
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -73,6 +75,7 @@ describe("Partial update booking", () => {
 				"bookingdates": newBookingIllegalValues.bookingdates
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "text/html; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -95,6 +98,7 @@ describe("Partial update booking", () => {
 				"lastname": newBookingIllegalValues.lastname
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -118,6 +122,7 @@ describe("Partial update booking", () => {
 				"bookingdates": newBookingMalformedSchema.checkin
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
@@ -141,6 +146,7 @@ describe("Partial update booking", () => {
 				"lastname": updateBooking3.lastname
 			})
 			.end((err, res) => {
+				expect(err).to.be.null;
 				expect(res).to.have.status(405);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
