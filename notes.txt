@@ -1,5 +1,0 @@
-//const assert = chai.assert;
-// assert ---> test("") suite
-// expect ---> it("") describe
-
-// performance sanity test - hogyan ???
