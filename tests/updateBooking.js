@@ -4,6 +4,7 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
 const authValid = require("../testData/testData").authValid;
 const authInvalid = require("../testData/testData").authInvalid;
 const updateBooking = require("../testData/testData").updateBooking;
@@ -17,7 +18,7 @@ describe("Update booking", () => {
 	it("updateBooking - positive - update existing booking with valid data & valid auth & accept in 'application/json' format", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/15")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -44,7 +45,7 @@ describe("Update booking", () => {
 
 	it("bookingId - positive - get valid bookingId", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/15")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -69,7 +70,7 @@ describe("Update booking", () => {
 	it("updateBooking - positive - update existing booking with valid data & valid auth & send in text/xml format & accept in 'text/html' format", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/2")
 			.set("Content-Type", "text/xml")
 			.set("Accept", "application/xml")
@@ -105,7 +106,7 @@ describe("Update booking", () => {
 	it("updateBooking - negative - update a non-existing booking with valid data", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/901")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -124,7 +125,7 @@ describe("Update booking", () => {
 	it("updateBooking - negative - update existing booking with empty data", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/1")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -143,7 +144,7 @@ describe("Update booking", () => {
 	it("updateBooking - negative - update existing booking with invalid data", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/1")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -162,7 +163,7 @@ describe("Update booking", () => {
 	it("updateBooking - negative - update existing booking with malformed data schema", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/1")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -181,7 +182,7 @@ describe("Update booking", () => {
 	it("updateBooking - negative - update an existing booking with valid data & invalid auth", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/3")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -200,7 +201,7 @@ describe("Update booking", () => {
 	it("updateBooking - negative - update an existing booking with valid data & no auth", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.put("/booking/3")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")

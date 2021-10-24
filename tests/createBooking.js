@@ -4,6 +4,7 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
 const newBooking = require("../testData/testData").newBooking;
 const newBookingLong = require("../testData/testData").newBookingLong;
 const newBookingIllegalValues = require("../testData/testData").newBookingIllegalValues;
@@ -13,7 +14,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - positive - create with valid data + 'application/json' payload format", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -46,7 +47,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - re-validation - filter by newly created name", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get(`/booking?firstname=${newBooking.firstname}&lastname=${newBooking.lastname}`)
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -62,7 +63,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - positive - create with valid data + 'application/xml' payload format - also, already existing booking data can be created", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/xml")
 			.send({
@@ -97,7 +98,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with missing data - empty object", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "text/plain")
 			.send({})
@@ -113,7 +114,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with missing data - missing values", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -148,7 +149,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with too long strings", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -181,7 +182,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with illegal characters in payload - malformed firstname - special characters", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -211,7 +212,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with illegal characters in payload - malformed lastname - numbers instead of letters", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -236,7 +237,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with illegal characters in payload - malformed totalprice", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -266,7 +267,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with illegal characters in payload - malformed depositpaid - always true (might be design error)", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -296,7 +297,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with illegal characters in payload - malformed bookingdate", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "application/json")
 			.send({
@@ -321,7 +322,7 @@ describe("Create new booking", () => {
 
 	it("createBooking - negative - create booking with malformed schema in payload", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/booking")
 			.set("Accept", "text/plain")
 			.send(newBookingMalformedSchema)

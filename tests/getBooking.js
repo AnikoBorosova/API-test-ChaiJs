@@ -4,11 +4,13 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
+
 describe("BookingId", () => {
 
 	it("bookingId - positive - get valid bookingId in 'application/json' format", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/6")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -33,7 +35,7 @@ describe("BookingId", () => {
 
 	it("bookingId - positive - get valid bookingId in 'application/xml' format", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/9")
 			.set("Accept", "application/xml")
 			.end((err, res) => {
@@ -55,7 +57,7 @@ describe("BookingId", () => {
 
 	it("bookingId - negative - get valid bookingId in non-applicable format", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/3")
 			.set("Accept", "text/plain")
 			.end((err, res) => {
@@ -70,7 +72,7 @@ describe("BookingId", () => {
 
 	it("bookingId - negative - get invalid bookingId - string of chars", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/XYZ")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -85,7 +87,7 @@ describe("BookingId", () => {
 
 	it("bookingId - negative - get invalid bookingId - '0' ", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/0")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -100,7 +102,7 @@ describe("BookingId", () => {
 
 	it("bookingId - negative - get valid, but non-existent bookingId", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get(`/booking/123456789`)
 			.set("Accept", "application/json")
 			.end((err, res) => {

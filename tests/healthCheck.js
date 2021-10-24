@@ -4,11 +4,13 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
+
 describe("Basic healthCheck", () => {
 
 	it("Healthcheck", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/ping")
 			.end((err, res) => {
 				expect(res).to.have.status(201);

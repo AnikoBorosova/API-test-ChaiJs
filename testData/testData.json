@@ -1,4 +1,5 @@
 {
+	"urlLocal": "http://localhost:3001",
 	"authValid": {
 		"username": "admin",
 		"password": "password123"
@@ -8,8 +9,8 @@
 		"password": "wrongPassword"
 	},
 	"newBooking": {
-		"firstname": "Kisa",
-		"lastname": "Vuka",
+		"firstname": "Kis",
+		"lastname": "Vuk",
 		"totalprice": 321,
 		"depositpaid": true,
 		"bookingdates": {
@@ -42,8 +43,8 @@
 	},
 	"newBookingMalformedSchema": {
 		"name": {
-			"firstname": "Kisa",
-			"lastname": "Vuka"
+			"firstname": "Mici",
+			"lastname": "Bácsi"
 		},
 		"totalprice": 321,
 		"depositpaid": true,
@@ -52,8 +53,8 @@
 		"additionalneeds": "Tás"
 	},
 	"updateBooking": {
-		"firstname": "dddd",
-		"lastname": "cccc",
+		"firstname": "Mici",
+		"lastname": "Néni",
 		"totalprice": 555,
 		"depositpaid": false,
 		"bookingdates": {
@@ -63,8 +64,8 @@
 		"additionalneeds": "Lunch"
 	},
 	"updateBooking2": {
-		"firstname": "ffff",
-		"lastname": "eee",
+		"firstname": "Süsü",
+		"lastname": "Sárkány",
 		"totalprice": 777,
 		"depositpaid": true,
 		"bookingdates": {
@@ -74,8 +75,8 @@
 		"additionalneeds": "Dinner"
 	},
 	"updateBooking3": {
-		"firstname": "zzz",
-		"lastname": "bbbb",
+		"firstname": "Fenséges",
+		"lastname": "Henceg",
 		"totalprice": 888,
 		"depositpaid": false,
 		"bookingdates": {

@@ -4,13 +4,15 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
+
 describe("BookingIds", () => {
 
 	let bookingIdArrayLength;
 
 	it("bookingIds - positive - get all IDs", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -27,7 +29,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - positive - filter by registered name", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?firstname=sally&lastname=brown")
 			// set application json as header - accept
 			.end((err, res) => {
@@ -45,7 +47,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - positive - filter by existing checkin date - past", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?checkin=2014-03-13&checkout=2014-05-21")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -59,7 +61,7 @@ describe("BookingIds", () => {
 	it("bookingIds - negative - filter by existing checkin date - future", (done) => {
 		//TO DO - solve future programaticaly
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?checkin=2023-03-13&checkout=2023-05-21")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -72,7 +74,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by non-registered name", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?firstname=John&lastname=NonExistent")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -86,7 +88,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by invalid (malformed) name", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?firstname=000&lastname=[]]")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -100,7 +102,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by name - missing parameter (otherwise valid name) ", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?firstname=sally")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -117,7 +119,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by non-existent checkin date", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?checkin=2021-10-20&checkout=2021-10-22")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -131,7 +133,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by invalid (malformed) checkin date", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?checkin=201-33-67&checkout=202-348")
 			.end((err, res) => {
 				expect(res).to.have.status(500);
@@ -145,7 +147,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by incomplete (otherwise valid) checkin date", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?checkin=2021-10-20")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -159,7 +161,7 @@ describe("BookingIds", () => {
 
 	it("bookingIds - negative - filter by bookingId - ensure it does NOT filter (on this endpoint)", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking?bookingid=1")
 			.end((err, res) => {
 				expect(res).to.have.status(200);

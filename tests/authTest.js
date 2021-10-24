@@ -4,13 +4,15 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
+
 describe("authTests", () => {
 
 	let authToken;
 
 	it("Auth - positive", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/auth")
 			.send({
 				"username": "admin",
@@ -29,7 +31,7 @@ describe("authTests", () => {
 		// TO DO: validate status code, payload, headers -- API should fail gracefully.
 		//  Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves. (/home/aniko/Codes/API_tests_ChaiJs/tests/authTest.js)
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/auth")
 			//.set("Content-Type", "application/json")
 			.set("Content-Type", "text/plain")
@@ -55,7 +57,7 @@ describe("authTests", () => {
 
 	it("Auth - negative - well-formed but non-existent credentials", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/auth")
 			.send({
 				"username": "nonExistentUser",
@@ -73,7 +75,7 @@ describe("authTests", () => {
 
 	it("Auth - negative - invalid - missing user credentials", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/auth")
 			.send({
 				"username": "admin"
@@ -90,7 +92,7 @@ describe("authTests", () => {
 
 	it("Auth - negative - invalid - malformed schema", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.post("/auth")
 			.send({
 				"username": "admin",

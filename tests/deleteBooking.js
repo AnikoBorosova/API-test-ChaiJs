@@ -4,6 +4,7 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
 const authValid = require("../testData/testData").authValid;
 
 describe("Delete booking", () => {
@@ -11,7 +12,7 @@ describe("Delete booking", () => {
 	xit("deleteBooking - positive - delete existing booking", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.delete("/booking/3")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -28,7 +29,7 @@ describe("Delete booking", () => {
 
 	xit("deleteBooking - re-validate - try get booking that was deleted", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.get("/booking/3")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -43,7 +44,7 @@ describe("Delete booking", () => {
 
 	it("deleteBooking - positive - delete by name", (done) => {
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.delete("/booking?firstname=sally&lastname=brown")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -61,7 +62,7 @@ describe("Delete booking", () => {
 	it("deleteBooking - negative - delete non-existing booking", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.delete("/booking/5000")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -79,7 +80,7 @@ describe("Delete booking", () => {
 	it("deleteBooking - negative - delete booking without id", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.delete("/booking/")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -97,7 +98,7 @@ describe("Delete booking", () => {
 	it("deleteBooking - negative - delete booking without auth", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.delete("/booking/7")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")

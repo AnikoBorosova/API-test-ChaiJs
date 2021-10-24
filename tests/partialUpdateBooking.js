@@ -4,6 +4,7 @@ const expect = chai.expect;
 const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
+const urlLocal = require("../testData/testData").urlLocal;
 const authValid = require("../testData/testData").authValid;
 const updateBooking = require("../testData/testData").updateBooking;
 const updateBooking2 = require("../testData/testData").updateBooking2;
@@ -16,7 +17,7 @@ describe("Partial update booking", () => {
 	it("partialUpdateBooking - positive - update existing booking with partial valid data & accept in 'application/json' format", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.patch("/booking/12")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -39,7 +40,7 @@ describe("Partial update booking", () => {
 	it("partialUpdateBooking - positive - update existing booking with partial valid data & send in text/xml format & accept in 'text/html' format", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.patch("/booking/9")
 			.set("Content-Type", "text/xml")
 			.set("Accept", "application/xml")
@@ -63,7 +64,7 @@ describe("Partial update booking", () => {
 	it("partialUpdateBooking - negative - update existing booking with partial invalid data - invalid date format", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.patch("/booking/10")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -85,7 +86,7 @@ describe("Partial update booking", () => {
 		// creating is not allowed with this lastname, but updating is allowed - might be a design flaw
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.patch("/booking/2")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -107,7 +108,7 @@ describe("Partial update booking", () => {
 		// updating is not allowed with this schema, but status code is 200 - might be a design flaw
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.patch("/booking/12")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
@@ -130,7 +131,7 @@ describe("Partial update booking", () => {
 	it("partialUpdateBooking - negative - update a non-existing booking with valid partial data", (done) => {
 
 		chai
-			.request("http://localhost:3001")
+			.request(urlLocal)
 			.patch("/booking/991")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
