@@ -8,8 +8,8 @@ describe("BookingId", () => {
 
 	it("bookingId - positive - get valid bookingId in 'application/json' format", (done) => {
 		chai
-			.request("https://restful-booker.herokuapp.com")
-			.get("/booking/3")
+			.request("http://localhost:3001")
+			.get("/booking/6")
 			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -33,8 +33,8 @@ describe("BookingId", () => {
 
 	it("bookingId - positive - get valid bookingId in 'application/xml' format", (done) => {
 		chai
-			.request("https://restful-booker.herokuapp.com")
-			.get("/booking/5")
+			.request("http://localhost:3001")
+			.get("/booking/9")
 			.set("Accept", "application/xml")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
@@ -55,23 +55,22 @@ describe("BookingId", () => {
 
 	it("bookingId - negative - get valid bookingId in non-applicable format", (done) => {
 		chai
-			.request("https://restful-booker.herokuapp.com")
+			.request("http://localhost:3001")
 			.get("/booking/3")
 			.set("Accept", "text/plain")
 			.end((err, res) => {
-				expect(res).to.have.status(418);
+				expect(res).to.have.status(404);
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
-				expect(res).to.have.property("error").to.have.property("text").to.equal("I'm a teapot");
-				expect(res.text).to.equal("I'm a teapot");
-				expect(res.body).to.be.an("object").that.is.is.empty;
+				expect(res).to.have.property("error").to.have.property("text").to.equal("Not Found");
+				expect(res.body).to.be.an("object").that.is.empty;
 				done();
 			});
 	});
 
 	it("bookingId - negative - get invalid bookingId - string of chars", (done) => {
 		chai
-			.request("https://restful-booker.herokuapp.com")
+			.request("http://localhost:3001")
 			.get("/booking/XYZ")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -79,14 +78,14 @@ describe("BookingId", () => {
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
 				expect(res).to.have.property("error").to.have.property("text").to.equal("Not Found");
-				expect(res.body).to.be.an("object").that.is.is.empty;
+				expect(res.body).to.be.an("object").that.is.empty;
 				done();
 			});
 	});
 
 	it("bookingId - negative - get invalid bookingId - '0' ", (done) => {
 		chai
-			.request("https://restful-booker.herokuapp.com")
+			.request("http://localhost:3001")
 			.get("/booking/0")
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -94,14 +93,14 @@ describe("BookingId", () => {
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
 				expect(res).to.have.property("error").to.have.property("text").to.equal("Not Found");
-				expect(res.body).to.be.an("object").that.is.is.empty;
+				expect(res.body).to.be.an("object").that.is.empty;
 				done();
 			});
 	});
 
 	it("bookingId - negative - get valid, but non-existent bookingId", (done) => {
 		chai
-			.request("https://restful-booker.herokuapp.com")
+			.request("http://localhost:3001")
 			.get(`/booking/123456789`)
 			.set("Accept", "application/json")
 			.end((err, res) => {
@@ -109,7 +108,7 @@ describe("BookingId", () => {
 				expect(res).to.have.header("Content-Type", "text/plain; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
 				expect(res).to.have.property("error").to.have.property("text").to.equal("Not Found");
-				expect(res.body).to.be.an("object").that.is.is.empty;
+				expect(res.body).to.be.an("object").that.is.empty;
 				done();
 			});
 	});

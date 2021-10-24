@@ -17,7 +17,7 @@ describe("Partial update booking", () => {
 
 		chai
 			.request("http://localhost:3001")
-			.patch("/booking/5")
+			.patch("/booking/12")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)
@@ -86,7 +86,7 @@ describe("Partial update booking", () => {
 
 		chai
 			.request("http://localhost:3001")
-			.patch("/booking/4")
+			.patch("/booking/2")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)

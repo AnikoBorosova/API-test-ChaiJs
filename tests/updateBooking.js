@@ -18,7 +18,7 @@ describe("Update booking", () => {
 
 		chai
 			.request("http://localhost:3001")
-			.put("/booking/1")
+			.put("/booking/15")
 			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.auth(authValid.username, authValid.password)
@@ -45,7 +45,7 @@ describe("Update booking", () => {
 	it("bookingId - positive - get valid bookingId", (done) => {
 		chai
 			.request("http://localhost:3001")
-			.get("/booking/1")
+			.get("/booking/15")
 			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(res).to.have.status(200);
