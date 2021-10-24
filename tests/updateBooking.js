@@ -48,6 +48,7 @@ describe("Update booking", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking/15")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;

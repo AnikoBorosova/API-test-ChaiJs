@@ -16,18 +16,9 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
-			.send({
-				"firstname": newBooking.firstname,
-				"lastname": newBooking.lastname,
-				"totalprice": newBooking.totalprice,
-				"depositpaid": newBooking.depositpaid,
-				"bookingdates": {
-					"checkin": newBooking.bookingdates.checkin,
-					"checkout": newBooking.bookingdates.checkout
-				},
-				"additionalneeds": newBooking.additionalneeds
-			})
+			.send(newBooking)
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -50,6 +41,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.get(`/booking?firstname=${newBooking.firstname}&lastname=${newBooking.lastname}`)
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
@@ -67,18 +59,19 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "text/xml")
 			.set("Accept", "application/xml")
-			.send({
-				"firstname": newBooking.firstname,
-				"lastname": newBooking.lastname,
-				"totalprice": newBooking.totalprice,
-				"depositpaid": newBooking.depositpaid,
-				"bookingdates": {
-					"checkin": newBooking.bookingdates.checkin,
-					"checkout": newBooking.bookingdates.checkout
-				},
-				"additionalneeds": newBooking.additionalneeds
-			})
+			.send(`<booking> \
+					<firstname>${newBooking.firstname}</firstname> \
+					<lastname>${newBooking.lastname}</lastname> \
+					<totalprice>${newBooking.totalprice}</totalprice> \
+					<depositpaid>${newBooking.depositpaid}</depositpaid> \
+					<bookingdates> \
+			  			<checkin>${newBooking.bookingdates.checkin}</checkin> \
+			  			<checkout>${newBooking.bookingdates.checkout}</checkout> \
+					</bookingdates> \
+					<additionalneeds>${newBooking.additionalneeds}</additionalneeds> \
+		 		 </booking>`)
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -86,15 +79,13 @@ describe("Create new booking", () => {
 				expect(res).to.have.header("connection", "close");
 				expect(res.body).to.be.an("object").that.is.empty;
 				expect(res.text).to.have.string("xml");
-				expect(res.text).to.have.string("bookingid");
-				expect(res.text).to.have.string("firstname");
-				expect(res.text).to.have.string("lastname");
-				expect(res.text).to.have.string("totalprice");
-				expect(res.text).to.have.string("depositpaid");
-				expect(res.text).to.have.string("bookingdates");
-				expect(res.text).to.have.string("checkin");
-				expect(res.text).to.have.string("checkout");
-				expect(res.text).to.have.string("additionalneeds");
+				expect(res.text).to.have.string(`${newBooking.firstname}`);
+				expect(res.text).to.have.string(`${newBooking.lastname}`);
+				expect(res.text).to.have.string(`${newBooking.totalprice}`);
+				expect(res.text).to.have.string(`${newBooking.depositpaid}`);
+				expect(res.text).to.have.string(`${newBooking.bookingdates.checkin}`);
+				expect(res.text).to.have.string(`${newBooking.bookingdates.checkout}`);
+				expect(res.text).to.have.string(`${newBooking.additionalneeds}`);
 				done();
 			});
 	});
@@ -103,7 +94,8 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
-			.set("Accept", "text/plain")
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.send({})
 			.end((err, res) => {
 				expect(err).to.be.null;
@@ -120,6 +112,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.send({
 				"firstname": "",
@@ -156,18 +149,9 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
-			.send({
-				"firstname": newBookingLong.firstname,
-				"lastname": newBookingLong.lastname,
-				"totalprice": newBookingLong.totalprice,
-				"depositpaid": newBookingLong.depositpaid,
-				"bookingdates": {
-					"checkin": newBookingLong.bookingdates.checkin,
-					"checkout": newBookingLong.bookingdates.checkout
-				},
-				"additionalneeds": newBookingLong.additionalneeds
-			})
+			.send(newBookingLong)
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -190,6 +174,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.send({
 				"firstname": newBookingIllegalValues.firstname,
@@ -221,6 +206,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.send({
 				"firstname": newBooking.firstname,
@@ -247,6 +233,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.send({
 				"firstname": newBooking.firstname,
@@ -278,6 +265,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.send({
 				"firstname": newBooking.firstname,
@@ -309,6 +297,7 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.send({
 				"firstname": newBooking.firstname,
@@ -335,7 +324,8 @@ describe("Create new booking", () => {
 		chai
 			.request(urlLocal)
 			.post("/booking")
-			.set("Accept", "text/plain")
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.send(newBookingMalformedSchema)
 			.end((err, res) => {
 				expect(err).to.be.null;

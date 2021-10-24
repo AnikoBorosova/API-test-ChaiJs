@@ -8,7 +8,7 @@ const urlLocal = require("../testData/testData").urlLocal;
 
 describe("Basic healthCheck", () => {
 
-	it("Healthcheck", (done) => {
+	it("healthCheck", (done) => {
 		chai
 			.request(urlLocal)
 			.get("/ping")

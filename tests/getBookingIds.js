@@ -5,6 +5,9 @@ const chaiHttp = require("chai-http");
 chai.use(chaiHttp);
 
 const urlLocal = require("../testData/testData").urlLocal;
+const existingUser = require("../testData/testData").existingUser;
+const nonExistingUser = require("../testData/testData").authInvalid;
+const newBookingIllegalValues = require("../testData/testData").newBookingIllegalValues;
 
 describe("BookingIds", () => {
 
@@ -14,6 +17,8 @@ describe("BookingIds", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking")
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -28,50 +33,41 @@ describe("BookingIds", () => {
 			});
 	});
 
-	it("bookingIds - positive - filter by registered name", (done) => {
+	// temporarily xited - needs permanent registration
+	xit("bookingIds - positive - filter by registered name", (done) => {
 		chai
 			.request(urlLocal)
-			.get("/booking?firstname=sally&lastname=brown")
-			// set application json as header - accept
+			.get(`/booking?firstname=${existingUser.firstname}&lastname=${existingUser.lastname}`)
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
-				expect(res.body).to.be.an("array");
-				//expect(res.body).to.be.an("array").to.have.lengthOf(1);
-				//expect(res.body[0]).to.be.an("object");
-				//expect(res.body[0]).to.have.property("firstname").that.equals("Jim");
-				//expect(res.body[0]).to.have.property("lastname").that.equals("Smith");
+				expect(res.body).to.be.an("array").that.have.lengthOf(1);
+				expect(res.body[0]).to.be.an("object");
+				expect(res.body[0]).to.have.property("firstname").that.equals(existingUser.firstname);
+				expect(res.body[0]).to.have.property("lastname").that.equals(existingUser.lastname);
 				done();
 			});
 	});
 
-	it("bookingIds - positive - filter by existing checkin date - past", (done) => {
+	xit("bookingIds - positive - filter by existing checkin date", (done) => {
 		chai
 			.request(urlLocal)
-			.get("/booking?checkin=2014-03-13&checkout=2014-05-21")
+			.get(`/booking?checkin=${existingUser.bookingdates.checkin}&checkout=${existingUser.bookingdates.checkout}`)
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
-				expect(res.body).to.be.an("array");
-				done();
-			});
-	});
-
-	it("bookingIds - negative - filter by existing checkin date - future", (done) => {
-		//TO DO - solve future programaticaly
-		chai
-			.request(urlLocal)
-			.get("/booking?checkin=2023-03-13&checkout=2023-05-21")
-			.end((err, res) => {
-				expect(err).to.be.null;
-				expect(res).to.have.status(200);
-				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
-				expect(res).to.have.header("connection", "close");
-				expect(res.body).to.be.an("array");
+				expect(res.body).to.be.an("array").that.have.lengthOf(1);
+				expect(res.body[0]).to.be.an("object");
+				expect(res.body[0]).to.have.property("bookingdates").to.have.property("checkin").that.equals(existingUser.checkin);
+				expect(res.body[0]).to.have.property("bookingdates").to.have.property("checkout").that.equals(existingUser.checkout);
 				done();
 			});
 	});
@@ -79,7 +75,9 @@ describe("BookingIds", () => {
 	it("bookingIds - negative - filter by non-registered name", (done) => {
 		chai
 			.request(urlLocal)
-			.get("/booking?firstname=John&lastname=NonExistent")
+			.get(`/booking?firstname=${nonExistingUser.username}&lastname=${nonExistingUser.username}`)
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -95,6 +93,8 @@ describe("BookingIds", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking?firstname=000&lastname=[]]")
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -106,20 +106,21 @@ describe("BookingIds", () => {
 			});
 	});
 
-	it("bookingIds - negative - filter by name - missing parameter (otherwise valid name) ", (done) => {
+	xit("bookingIds - negative - filter by name - missing parameter (otherwise valid name) ", (done) => {
 		chai
 			.request(urlLocal)
-			.get("/booking?firstname=sally")
+			.get(`/booking?firstname=${existingUser.username}`)
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
 				expect(res).to.have.header("Content-Type", "application/json; charset=utf-8");
 				expect(res).to.have.header("connection", "close");
 				expect(res.body).to.be.an("array");
-				//expect(res.body).to.be.an("array").to.have.lengthOf(1);
-				//expect(res.body[0]).to.be.an("object");
-				//expect(res.body[0]).to.have.property("firstname").that.equals("sally");
-				//expect(res.body[0]).to.have.property("lastname").that.equals("brown");
+				expect(res.body).to.be.an("array").that.have.lengthOf(1);
+				expect(res.body[0]).to.be.an("object");
+				expect(res.body[0]).to.have.property("firstname").that.equals(existingUser.username);
 				done();
 			});
 	});
@@ -128,6 +129,8 @@ describe("BookingIds", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking?checkin=2021-10-20&checkout=2021-10-22")
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -142,7 +145,9 @@ describe("BookingIds", () => {
 	it("bookingIds - negative - filter by invalid (malformed) checkin date", (done) => {
 		chai
 			.request(urlLocal)
-			.get("/booking?checkin=201-33-67&checkout=202-348")
+			.get(`/booking?checkin=${newBookingIllegalValues.bookingdates.checkin}&checkout=${newBookingIllegalValues.bookingdates.checkout}`)
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(500);
@@ -154,10 +159,12 @@ describe("BookingIds", () => {
 			});
 	});
 
-	it("bookingIds - negative - filter by incomplete (otherwise valid) checkin date", (done) => {
+	xit("bookingIds - negative - filter by incomplete (otherwise valid) checkin date", (done) => {
 		chai
 			.request(urlLocal)
-			.get("/booking?checkin=2021-10-20")
+			.get(`/booking?checkin=${existingUser.bookingdates.checkin}`)
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);
@@ -173,6 +180,8 @@ describe("BookingIds", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking?bookingid=1")
+			.set("Content-Type", "application/json")
+			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
 				expect(res).to.have.status(200);

@@ -8,6 +8,14 @@
 		"username": "wrongUser",
 		"password": "wrongPassword"
 	},
+	"existingUser": {
+		"firstname": "Sally",
+		"lastname": "Brown",
+		"bookingdates": {
+			"checkin": "2014-03-13",
+			"checkout": "2014-05-21"
+		}
+	},
 	"newBooking": {
 		"firstname": "Kis",
 		"lastname": "Vuk",

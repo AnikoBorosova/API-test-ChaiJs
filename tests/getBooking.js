@@ -12,6 +12,7 @@ describe("BookingId", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking/6")
+			.set("Content-Type", "application/json")
 			.set("Accept", "application/json")
 			.end((err, res) => {
 				expect(err).to.be.null;
@@ -38,6 +39,7 @@ describe("BookingId", () => {
 		chai
 			.request(urlLocal)
 			.get("/booking/9")
+			.set("Content-Type", "text/xml")
 			.set("Accept", "application/xml")
 			.end((err, res) => {
 				expect(err).to.be.null;
