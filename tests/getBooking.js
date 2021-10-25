@@ -59,7 +59,7 @@ describe("BookingId", () => {
 			});
 	});
 
-	it("bookingId - negative - get valid bookingId in non-applicable format", (done) => {
+	xit("bookingId - negative - get valid bookingId in non-applicable format", (done) => {
 		chai
 			.request(urlLocal)
 			.get("/booking/3")
