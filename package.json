@@ -2,7 +2,7 @@
 	"name": "api_tests_chaijs",
 	"version": "1.0.0",
 	"description": "API-tests with chaiJs",
-	"main": "index.js",
+	"main": "",
 	"scripts": {
 		"test": "node ./node_modules/mocha/bin/mocha 'tests/*.js'"
 	},
@@ -10,7 +10,7 @@
 		"type": "git",
 		"url": "git+https://github.com/AnikoBorosova/API_tests_ChaiJs.git"
 	},
-	"author": "AnikoBorosova",
+	"author": "Aniko Borosová",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/AnikoBorosova/API_tests_ChaiJs/issues"
